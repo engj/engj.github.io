@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<script src="//use.typekit.net/kjj1ade.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<title>4Ward: Continuously Variable Wheelchair Transmission</title>
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<div class="main">
+		<header>
+			<h1>4Ward: Continuously Variable Wheelchair Transmission</h1>
+		</header>
+		<article>
+			<h2>Motivation</h2>
+			<p>Hardrim wheelchairs are a simple and cost effective way to restore mobility to those unable to use their legs to walk. However, the act of pushing on the rims <a href="http://en.wikipedia.org/wiki/Repetitive_strain_injury">repetitive strain injury (RSI)</a> due to the fact that the user is only exerting force in one direction and that the act of rotating the rim leads to potentially unsafe loads on the shoulder and back of the user. Handrim wheelchairs are also difficult to use for covering long distances or climb steep hills since the motion of the rims is directly related to the motion of the chair. Below is an image of a standard handrim wheelchair.</p>
+			<figure>
+			  <img src="4ward/wheelchair.png">
+			</figure>
+			<h2>Solution</h2>
+			<p>We decided to use a four bar linkage to solve the two major issues with the traditional wheelchair design. The four bar system greatly reduces the threat of <a href="http://en.wikipedia.org/wiki/Repetitive_strain_injury">RSI</a> because it converts a rotational motion of a wheel to a small arc motion of a bar. Instead of rotating the wheel directly, the user pushes and pulls on an ergonomically located handle making a rowing motion. The linkage also allows the user to input force to the system on both the forward and backward motion of the row, further reducing the threat of <a href="http://en.wikipedia.org/wiki/Repetitive_strain_injury">RSI</a> since the motion is symmetric. See below for a model of the linkage on a representative system.</p>
+			<figure>
+			  <img src="4ward/figure2.png">
+			</figure>
+			<p> We solved the inconvenience of climbing hills and covering long distances with the addition of two <a href="http://www.firgelli.com/products.php?id=41">linear actuators</a> that change the lengths of link A and B. For a given system geometry, link A traces out a set angle as link C rotates 360&deg;. The distance traveled by the tip of link A for a full rotation of the wheel forms an equivalent gear ratio for the system. When the length of link A and B change, so does both the angle traced out by link A and the gear ratio of the system. See the diagram below for a graphical representation of the four bar linkage.</p>
+			<figure>
+			  <img src="4ward/figure3.png">
+			</figure>
+			<p>An <a href="http://www.arduino.cc/">Arduino</a> was used to control the angle traced out by link A as a function of the angular velocity of the wheel such that the faster the wheelchair is moving, the smaller the angle and vice versa. This allowed the linkage to become an automatic continuous variable transmission thus making it easier to exert large forces to climb hills, small forces to travel long distances, and anything in between. See the images below for various views of the functional prototype.</p>
+			<figure>
+			  <img src="4ward/figure4.jpg">
+			</figure>
+			<figure>
+			  <img src="4ward/figure5.png">
+			</figure>
+			<figure>
+			  <img src="4ward/figure6.jpg">
+			</figure>
+			<h2>Demonstration</h2>
+			<p>The following video demonstrates the system's operation.</p>
+			<figure>
+			<iframe width="600" height="400" src="http://www.youtube.com/embed/SuZify7S4gQ" frameborder="0" allowfullscreen></iframe>
+			</figure>
+		</article>
+	</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+* {	
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "dejarip",sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	color: #333;
+	letter-spacing: 0.2px;		
+	padding: 70px 0 100px 0;
+	background-color: #fffefb;
+}
+.main {
+	width: 650px;
+	margin: 0 auto;
+}
+header, figure {
+	text-align: center;
+}
+figure, p {
+	margin-bottom: 50px;
+}
+h2 {
+	margin-bottom: 15px;
+}
+p {
+	font-size: 1em;
+ 	line-height: 1.8em;
+}
+h1 {
+	font-size: 2em;
+	margin-bottom: 40px;
+	color: #e22c29;
+}
+h2 {
+	border-bottom: 1px solid #eee;
+}
+a:link, a:visited {
+	color: #e22c29;
+	text-decoration: none;
+	border-bottom: 1px solid #e22c29;
+}
+a:hover {
+	text-decoration: none;
+	border-bottom: 0;
+}
+ul {
+	margin-bottom: 50px;
+}
+li {
+	margin-bottom: 1em;
+	margin-left: 1em;
+}

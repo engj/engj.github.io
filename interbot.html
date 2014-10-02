@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<script src="//use.typekit.net/kjj1ade.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<title>InterBot: Internet Controlled Robot</title>
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<div class="main">
+		<header>
+			<h1>InterBot: Internet Controlled Robot</h1>
+		</header>
+		<article>
+			<h2>Motivation</h2>
+			<p>The main motivation was that controlling a robot over the <a href="http://en.wikipedia.org/wiki/Internet">internet</a> protocol through a <a href="http://en.wikipedia.org/wiki/Website">website</a> was <i>cool</i>. This was a personal project that I did the summer after my freshman year of <a href="http://berkeley.edu/index.html">college</a>. The experience was my first exposures to <a href="http://en.wikipedia.org/wiki/Electrical_engineering">electrical engineering</a>. At the time, I was planning to take <a href="http://www-inst.eecs.berkeley.edu/~ee100/archives.html">EE100</a> later on in my college career but I wanted to get a head start. Unfortunately I no longer have pictures of the project but I'll do my best to explain how I implemented the idea.<p>
+			<h2>System Design</h2>
+			<p>The diagram below shows the main components of the system and the flow of the user commands from the user to the motors of the robot.</p>
+			<figure>
+				<img src="interbot/diagram.png">
+			</figure>
+			<p>An broad of the control flow depicted above is as follows. The user goes to a <a href="http://en.wikipedia.org/wiki/Website">website</a> containing a <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">GUI</a> using a <a href="http://en.wikipedia.org/wiki/Web_browser">web browser</a>. The user presses and holds down (for as long as they want) one of the following four keys on their keyboard: w, a, s, or d to move the robot either, forward, left, backward, or right, respectively. The command associated with the key that was pressed is sent as a <a href="http://en.wikipedia.org/wiki/Message_passing">message</a> through a variety of different layers all the way to a <a href="http://en.wikipedia.org/wiki/Message_passing">Tamiya Tracked Vehicle</a> containing an <a href="http://forum.arduino.cc/">Arduino</a>.</p>
+			
+			<p><strong>Front-End:</strong> The <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">GUI</a> consists of four <a href="http://en.wikipedia.org/wiki/HTML">HTML</a> <a href="http://www.w3schools.com/tags/tag_div.asp">div</a> elements each containing one of the single characters 'w', 'a', 's', or 'd'. The elements are shaped as squares using <a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a>. With the help of <a href="http://jquery.com/">JQuery</a>, <a href="http://en.wikipedia.org/wiki/Event_(computing)#Event_handler">events handlers</a> in <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> are attached to each of the <a href="http://www.w3schools.com/tags/tag_div.asp">div</a> elements and are triggered when one of the four keys on the keyboard are pressed. When the user presses one of the keys, the command associated with that key is sent as a <a href="http://en.wikipedia.org/wiki/POST_(HTTP)">HTTP POST request</a> using the <a href="http://en.wikipedia.org/wiki/Web_browser">web browser</a>'s <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHTTPRequest</a> object of <a href="http://jquery.com/">JQuery</a>'s <a href="http://api.jquery.com/jquery.post/">post</a> method to the <a href="http://en.wikipedia.org/wiki/Front_and_back_ends">back-end</a>.
+
+			
+			<p><strong>Back-End:</strong> To keep <a href="http://en.wikipedia.org/wiki/Latency_(engineering)">latency</a> of commands being sent to the robot over the internet as low as possible for simulating <a href="http://en.wikipedia.org/wiki/Real_time_(media)">real-time</a> control, I used the  <a href="https://cloud.google.com/appengine/">Google App Engine</a> platform for hosting the website as Google's servers are located all over the world. To handle <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">requests</a> being sent from the website front-end to the website back-end, I used the platform's built-in <a href="https://cloud.google.com/appengine/docs/python/">web framework</a> as it was simple, fast to deploy, and it supports a language I was already familiar with: <a href="https://www.python.org/">Python</a>. Since <a href="https://cloud.google.com/appengine/">Google App Engine</a> did not support <a href="http://en.wikipedia.org/wiki/Network_socket">socket</a> connections at the time for security reasons, I used the <a href="http://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> protocol whose <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> methods <a href="https://docs.python.org/2/library/urllib.html">readily supported</a> for passing the commands from the website back-end to the server on my home computer.</p>
+			
+			<p><strong>XML-RPC Server:</strong> To listen and respond to incoming commands coming from the website back-end, I used <a href="https://docs.python.org/2/library/xmlrpclib.html#module-xmlrpclib">xmlrpclib</a>, a built-in <a href="https://www.python.org/">Python</a> library that includes a simple server and methods for decoding messages in <a href="http://en.wikipedia.org/wiki/XML">XML</a> form. For passing commands from here and finally to the <a href="http://arduino.cc/">Arduino</a> microcontroller, I used another simple library, <a href="http://pyserial.sourceforge.net/">PySerial</a>, to implement and interact with the <a href="http://en.wikipedia.org/wiki/Serial_port">serial</a> interface and thus the Arduino. Finally, based on the forward, left, backward, or right command that was sent from the user, the Arduino sends a corresponding series of <a href="http://en.wikipedia.org/wiki/Pulse-width_modulation">PWM</a> pulses to the <a href="http://en.wikipedia.org/wiki/H_bridge">H bridge</a> driving the motor.</p>
+			
+			<p><strong>Microcontroller:</strong> I used an <a href="http://www.arduino.cc/">Arduino</a> because it was relatively affordable and had enough <a href="http://en.wikipedia.org/wiki/General-purpose_input/output">GPIO</a> pins required for this project. It also had a large and active <a href="http://forum.arduino.cc/">community</a>, which was helpful me as this was my first time with electronics. To get myself familiar with the underlying implementation of <a href="http://en.wikipedia.org/wiki/Integrated_circuit">ICs</a> and <a href="http://en.wikipedia.org/wiki/Circuit_diagram">circuit diagrams</a>, I created my own <a href="http://en.wikipedia.org/wiki/H_bridge">H bridge</a> for controlling direction of the motors using <a href="http://en.wikipedia.org/wiki/Bipolar_junction_transistor#NPN">NPN</a> and <a href="http://en.wikipedia.org/wiki/Bipolar_junction_transistor#PNP">PNP</a> transistors soldered onto a <a href="http://en.wikipedia.org/wiki/Perfboard">perfboard</a>.</p>
+			
+		</article>
+	</div>
+</body>
+</html>
