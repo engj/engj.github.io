@@ -81,16 +81,22 @@
 			<p>The problems that we ran into for wireless communications, however, were mostly out of bad luck. During initial research, we found both <a href="http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter">UART</a> serial communication example code and wireless connectivity drivers online. We did not foresee the version problems that we ended up having to deal with. However, to combat this in a possible version 2, our only argument is to perhaps start earlier on the wireless communication code, giving us enough time to ask around on the internet for help from people who understand device overlays for enabling <a href="http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter">UART</a>.</p>
 			<p>To simplify controller for the purposes of our project, we implemented a <a href="http://en.wikipedia.org/wiki/Control_theory#Classical_control_theory">SISO</a> controller. We did so by running the bike at a constant velocity and exploring how slow we could go. However, this required constant tuning of our control parameters according to the bike speed which limited our ability to really test the limits of speed and stability. The sensitivity of our control parameters with respect to bike velocity was evident in our demonstrations. The control gains were tuned to the bike when it was running on a drained battery, but during the demo, the battery was fresh and fully charged. The increased speed in the motor caused the controls to be too reactive, and almost unstable. Thus, in a future version, we would like implement a more complex controller, which consists of two <a href="http://en.wikipedia.org/wiki/Control_theory#Classical_control_theory">SISO</a> control loops running parallel for the lean and velocity control. This would induce a certain speed dependence in the values of the control parameters, but more rigorous testing would be able to provide that information.</p>
 			<h2>Code</h2>
-			<strong>Arduino:</strong><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/arduino_code/main.ino">main.ino</a><br>
-			<strong>BeagleBone:</strong><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/beaglebone_code/server.py">server.py</a><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/beaglebone_code/net_threads.py">net_threads.py</a><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/beaglebone_code/start.sh">start.sh</a><br>
-			<strong>Laptop:</strong><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/laptop_code/client.py">client.py</a><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/laptop_code/net_threads.py">net_threads.py</a><br>
-			<a href="https://github.com/engj/engj.github.io/blob/master/bike/laptop_code/start.sh">start.sh</a>
+			<strong>Arduino:</strong>
+			<ul>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/arduino_code/main.ino">main.ino</a></li>
+			</ul>
+			<strong>BeagleBone:</strong>
+			<ul>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/beaglebone_code/server.py">server.py</a></li>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/beaglebone_code/net_threads.py">net_threads.py</a></li>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/beaglebone_code/start.sh">start.sh</a></li>
+			</ul>
+			<strong>Laptop:</strong>
+			<ul>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/laptop_code/client.py">client.py</a></li>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/laptop_code/net_threads.py">net_threads.py</a></li>
+				<li><a href="https://github.com/engj/engj.github.io/blob/master/bike/laptop_code/start.sh">start.sh</a></li>
+			</ul>
  		</article>
 	</div>
 </body>
