@@ -98,18 +98,19 @@ float getVelocity() {
   int currentTime = 0;
   int diameter = 26;
   
-  while (velocity  ==  0) {
+  while (velocity == 0) {
     val = digitalRead(Sensor_Pin);
-    if (val  ==  HIGH) {
-      currentTime  =  millis();
-      if (previousTime  =  =  0) {
-        previousTime  =  currentTime;
+    if (val == HIGH) {
+      currentTime = millis();
+      if (previousTime == 0) {
+        previousTime = currentTime;
         delay(threshold);
       } else {
-        velocity  =  (3.142 * diameter) / (currentTime - previousTime); 
+        velocity = (3.142 * diameter) / (currentTime - previousTime); 
       }
     }
   }
+  
   return velocity * 1000;
 }
 
