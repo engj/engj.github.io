@@ -1,4 +1,3 @@
-// Max/min position = 1023/0
 // motor1 pins
 int motor1_positionPin = 5;
 int motor1_speedPin = 3;
@@ -23,7 +22,7 @@ int encoder_previousPosition = 0;
 int encoder_previousTime = 0;
 
 // reed switch pin
-int Sensor_Pin  =  2;
+int Sensor_Pin = 2;
 
 void setup() {  
   // motor1 setup
@@ -47,10 +46,9 @@ void setup() {
 }
 
 void loop() {
-  // get the current velocity
+  // current velocity
   float velocity = getVelocity();
   
-  // int velocity = 0; make negative velocity positive
   if (velocity < 0) {
     velocity = -1 * velocity;
   }
@@ -94,7 +92,9 @@ float getVelocity() {
   float velocity = 0;
   int val = 0;
   int previousTime = 0;
-  int threshold = 500; // at least 500 ms elapsed per revolution
+  
+  // at least 500 ms elapsed per revolution
+  int threshold = 500;
   int currentTime = 0;
   int diameter = 26;
   
@@ -122,7 +122,7 @@ void moveMotor1(int currentPosition){
     } else {
       motor1_retract();
     }
-    currentPosition  =  analogRead(motor1_positionPin);
+    currentPosition = analogRead(motor1_positionPin);
   } 
   motor1_stop();
 }
